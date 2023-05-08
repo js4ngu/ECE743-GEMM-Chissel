@@ -13,6 +13,7 @@ class nInputPISOtest extends AnyFlatSpec with ChiselScalatestTester {
       p.io.parallelInputs(2).poke(3.U(5.W))
       p.io.parallelInputs(3).poke(4.U(5.W))
       p.io.parallelInputs(4).poke(5.U(5.W))
+
       p.clock.step()
 
       p.io.load.poke(false.B)

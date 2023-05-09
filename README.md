@@ -1,4 +1,4 @@
-Chisel Project Template
+Hardware Accelerators for GEMM with Chisel
 =======================
 
 You've done the [Chisel Bootcamp](https://github.com/freechipsproject/chisel-bootcamp), and now you

@@ -1,12 +1,15 @@
 Hardware Accelerators for GEMM with Chisel
 =======================
 고려대학교 ECE743 디지털하드웨어가속기 구조 수업 Midterm Project
+## Language
+* Chisel : Scala
+
 ## 개발환경
 * Window10
 * IntelliJ
 * SBT
 * GTKwabe
-* [(https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template).](https://github.com/freechipsproject/chisel-template)
+* [Chisel-template](https://github.com/freechipsproject/chisel-template)
 
 ## 폴더구조
 ![](https://private-user-images.githubusercontent.com/30527114/237283834-9e82b7c9-29b3-44cf-b36a-ac1f5e4c00bd.PNG?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiJrZXkxIiwiZXhwIjoxNjgzNjk1NTc2LCJuYmYiOjE2ODM2OTUyNzYsInBhdGgiOiIvMzA1MjcxMTQvMjM3MjgzODM0LTllODJiN2M5LTI5YjMtNDRjZi1iMzZhLWFjMWY1ZTRjMDBiZC5QTkc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBSVdOSllBWDRDU1ZFSDUzQSUyRjIwMjMwNTEwJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDIzMDUxMFQwNTA3NTZaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0yMDA0MWU3ZWE2ZDJkNWM2ZGJlMjk0Yjg0YWY0MjQ0NGFmZWFhMzVjMjY0YmQ2NmMwN2ViMjA3MTBmZWViZGFjJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.TogK9qNpRw_D__Fl3r9Y-ZX8qybhQfZM5s2QZ3W23WM)

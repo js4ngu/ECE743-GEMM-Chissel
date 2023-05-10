@@ -71,3 +71,38 @@ class GEMMtest extends AnyFlatSpec with ChiselScalatestTester {
     }
   }
 }
+
+class GEMMtest_8x8 extends AnyFlatSpec with ChiselScalatestTester {
+  behavior of "GEMM_8x8"
+  it should "GEMM ex" in {
+    test(new GEMM(size = 8, width = 8)).withAnnotations(Seq(WriteVcdAnnotation)) { p =>
+      // 공치행렬 선언
+      for (i <- 0 until 8) {
+        for (j <- 0 until 8) {
+          if (i == j) p.io.gain(i)(j).poke(1.U(8.W))
+          else p.io.gain(i)(j).poke(0.U(8.W))
+        }
+      }
+      p.clock.step()
+
+      // data injection
+      for (i <- 0 until 8) {
+        for (j <- 0 until i+1) {
+          p.io.in(j).poke(i.U(8.W)) // in 피크
+        }
+        p.clock.step()
+      }
+
+      for (i <- 8 until 16) {
+        for (j <- i - 7 until 8) {
+          p.io.in(j).poke(i.U(8.W)) // in 피크
+        }
+        p.clock.step()
+      }
+
+      // add clk
+      for (i <- 0 until 20)
+        p.clock.step()
+    }
+  }
+}

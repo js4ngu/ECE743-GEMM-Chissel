@@ -7,76 +7,31 @@ Hardware Accelerators for GEMM with Chisel
 * GTKwabe
 * ["Chisel template"](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template).
 
-#### Wait for the template cleanup workflow to complete
+# 폴더구조
+![](https://private-user-images.githubusercontent.com/30527114/237283834-9e82b7c9-29b3-44cf-b36a-ac1f5e4c00bd.PNG?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiJrZXkxIiwiZXhwIjoxNjgzNjk1NTc2LCJuYmYiOjE2ODM2OTUyNzYsInBhdGgiOiIvMzA1MjcxMTQvMjM3MjgzODM0LTllODJiN2M5LTI5YjMtNDRjZi1iMzZhLWFjMWY1ZTRjMDBiZC5QTkc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBSVdOSllBWDRDU1ZFSDUzQSUyRjIwMjMwNTEwJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDIzMDUxMFQwNTA3NTZaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0yMDA0MWU3ZWE2ZDJkNWM2ZGJlMjk0Yjg0YWY0MjQ0NGFmZWFhMzVjMjY0YmQ2NmMwN2ViMjA3MTBmZWViZGFjJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.TogK9qNpRw_D__Fl3r9Y-ZX8qybhQfZM5s2QZ3W23WM)
+# GEMM
+![](https://private-user-images.githubusercontent.com/30527114/237283839-74b0f555-7a59-4161-9dc9-622d6c40bea2.PNG?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiJrZXkxIiwiZXhwIjoxNjgzNjk1NTc2LCJuYmYiOjE2ODM2OTUyNzYsInBhdGgiOiIvMzA1MjcxMTQvMjM3MjgzODM5LTc0YjBmNTU1LTdhNTktNDE2MS05ZGM5LTYyMmQ2YzQwYmVhMi5QTkc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBSVdOSllBWDRDU1ZFSDUzQSUyRjIwMjMwNTEwJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDIzMDUxMFQwNTA3NTZaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT04NGQ1ZTRkNzEzYzkzNDY5NDc0OGEyOGZmMGEyYWZmNmY1MmYzZjdlMjgwMzVmMzBjODYwMjFiYzFhMTVkMzAzJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.xM-pKLbZwUdYiFb9UB8Xt9VtEsAbF4tRnqX0wYoZANc)
+# Systolic Array
+![](https://private-user-images.githubusercontent.com/30527114/237283875-916236f7-6264-4190-a27f-f5ca6c07990e.PNG?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiJrZXkxIiwiZXhwIjoxNjgzNjk1NTc2LCJuYmYiOjE2ODM2OTUyNzYsInBhdGgiOiIvMzA1MjcxMTQvMjM3MjgzODc1LTkxNjIzNmY3LTYyNjQtNDE5MC1hMjdmLWY1Y2E2YzA3OTkwZS5QTkc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBSVdOSllBWDRDU1ZFSDUzQSUyRjIwMjMwNTEwJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDIzMDUxMFQwNTA3NTZaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1hY2FjYWE5N2IzNjRlMGEyOTQ0MGU2Y2QwYTc4MmVkMmM4ZDJiOTY4MTgwM2FhNWIyYjEwMzg1YzVmNWZjYjBlJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.r9F41EOd-1gma-BV0TwaX7XjWyYjDuHfetyfAeB8zZo)
+![](https://private-user-images.githubusercontent.com/30527114/237283864-cab0c50a-a6be-4d7c-8bd4-b8689574a41f.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiJrZXkxIiwiZXhwIjoxNjgzNjk1NTc2LCJuYmYiOjE2ODM2OTUyNzYsInBhdGgiOiIvMzA1MjcxMTQvMjM3MjgzODY0LWNhYjBjNTBhLWE2YmUtNGQ3Yy04YmQ0LWI4Njg5NTc0YTQxZi5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBSVdOSllBWDRDU1ZFSDUzQSUyRjIwMjMwNTEwJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDIzMDUxMFQwNTA3NTZaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT05ZjJlODA4NzUyYTZmNDI4OWZkYWE0ZDYwZTJmMWRjNTQ4ZTNlYjRlMWRlMjlkOTdlNWI0NThiYmYwNTQ2M2JkJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.4dOtjVOXkdjvcrQ-pZO5wwrq8fpSh1A-1MWBLF5ExdQ)
 
-After using the template to create your own blank project, please wait a minute or two for the `Template cleanup` workflow to run which will removes some template-specific stuff from the repository (like the LICENSE).
-Refresh the repository page in your browser until you see a 2nd commit by `actions-user` titled `Template cleanup`.
+## Dataflow
+![](https://private-user-images.githubusercontent.com/30527114/237283840-9db297c7-2cf6-46bb-aece-a09460d3ede7.PNG?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiJrZXkxIiwiZXhwIjoxNjgzNjk1NTc2LCJuYmYiOjE2ODM2OTUyNzYsInBhdGgiOiIvMzA1MjcxMTQvMjM3MjgzODQwLTlkYjI5N2M3LTJjZjYtNDZiYi1hZWNlLWEwOTQ2MGQzZWRlNy5QTkc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBSVdOSllBWDRDU1ZFSDUzQSUyRjIwMjMwNTEwJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDIzMDUxMFQwNTA3NTZaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT05NWU5Y2FjNGE1ZWNjOTUzNzhkNmQxOTAzZDcxOTM1MGZkYjFkOWU5MDIzNTI2MjU2MTVjNzkzYThlZWE4NzEwJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.eDk9QRhCrpPAmT_LIRkmuct5mjQ4zrdY6JbJdM38GIc)
+![](https://private-user-images.githubusercontent.com/30527114/237283843-30dc6fef-15f9-475c-99ec-a6a12ecd3988.PNG?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiJrZXkxIiwiZXhwIjoxNjgzNjk1NTc2LCJuYmYiOjE2ODM2OTUyNzYsInBhdGgiOiIvMzA1MjcxMTQvMjM3MjgzODQzLTMwZGM2ZmVmLTE1ZjktNDc1Yy05OWVjLWE2YTEyZWNkMzk4OC5QTkc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBSVdOSllBWDRDU1ZFSDUzQSUyRjIwMjMwNTEwJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDIzMDUxMFQwNTA3NTZaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0xODAxYjA0MjViNDg3ZTBlODBhODg2MTQ0MjI2MTAzNWZjOWIwOTVlZThjM2JkZmIwNDI1YjVhNTBiZGY3MjFkJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.ee53tqN7p5aLyrgiS28MEBhpS4X198-Q3i6KERc_vJc)
+![](https://private-user-images.githubusercontent.com/30527114/237283848-8199b8ee-80db-412d-b81c-587f84931e7b.PNG?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiJrZXkxIiwiZXhwIjoxNjgzNjk1NTc2LCJuYmYiOjE2ODM2OTUyNzYsInBhdGgiOiIvMzA1MjcxMTQvMjM3MjgzODQ4LTgxOTliOGVlLTgwZGItNDEyZC1iODFjLTU4N2Y4NDkzMWU3Yi5QTkc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBSVdOSllBWDRDU1ZFSDUzQSUyRjIwMjMwNTEwJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDIzMDUxMFQwNTA3NTZaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1jZGE4Yzc1ZmQ4ZTZhYTFhOTYxMGRjZGI2MjVlNGMxZjAyOTE3M2I2YWVkYWU5NTMyZGQwNWY4Y2RkZWViOTIxJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.lZDiUzyMcT9-WBCE_D8icyIrKqo6C2fid2YeEcwTuLI)
+![](https://private-user-images.githubusercontent.com/30527114/237283852-eaa92cad-1d77-49dd-a179-e3305cfc8c86.PNG?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiJrZXkxIiwiZXhwIjoxNjgzNjk1NTc2LCJuYmYiOjE2ODM2OTUyNzYsInBhdGgiOiIvMzA1MjcxMTQvMjM3MjgzODUyLWVhYTkyY2FkLTFkNzctNDlkZC1hMTc5LWUzMzA1Y2ZjOGM4Ni5QTkc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBSVdOSllBWDRDU1ZFSDUzQSUyRjIwMjMwNTEwJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDIzMDUxMFQwNTA3NTZaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT00ZGM1MjFmYmM2ZjFlZmUwNGIwYTFkYzJjMTNiMTFkM2FjZGE0M2Q2MThjZTJiMzAxMmVkNDdiNjNjOGI2ZjI1JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.NMyuPM43JB763N-KJlihe9Qg_BMjHh7N3vH6QIgOpkg)
+![](https://private-user-images.githubusercontent.com/30527114/237283856-577446de-505f-40be-af09-f240493d58e0.PNG?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiJrZXkxIiwiZXhwIjoxNjgzNjk1NTc2LCJuYmYiOjE2ODM2OTUyNzYsInBhdGgiOiIvMzA1MjcxMTQvMjM3MjgzODU2LTU3NzQ0NmRlLTUwNWYtNDBiZS1hZjA5LWYyNDA0OTNkNThlMC5QTkc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBSVdOSllBWDRDU1ZFSDUzQSUyRjIwMjMwNTEwJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDIzMDUxMFQwNTA3NTZaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1lYWI0MmEzMTNlOGVhMDkyMGJjMWM4NjUzZmRiZmE2MTM2N2M4YWNmN2UzMzkxMGJkNWQ4MGE4ZDk0MTYwMDkxJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.eJlMBYkxbpa42VdfakT2dPa1Hr-67ChaqeImxglpmyw)
+![](https://private-user-images.githubusercontent.com/30527114/237283862-4f70a63e-661a-4afc-aa16-21ed3b69b7cf.PNG?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiJrZXkxIiwiZXhwIjoxNjgzNjk1NTgzLCJuYmYiOjE2ODM2OTUyODMsInBhdGgiOiIvMzA1MjcxMTQvMjM3MjgzODYyLTRmNzBhNjNlLTY2MWEtNGFmYy1hYTE2LTIxZWQzYjY5YjdjZi5QTkc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBSVdOSllBWDRDU1ZFSDUzQSUyRjIwMjMwNTEwJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDIzMDUxMFQwNTA4MDNaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1hM2RmZWVkYzJkMWRlZWMzNzQ1NjIyZTZjYzA4NzEzNTczNWQwZWVjM2UzZWRmZmFlNTVjMjZjY2JhOWI0YjhjJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.hSyoKPDtxOtc0nCiKipiHkUbVNuUah3DClpsdDH2TQI)
 
+# waveform
+![](https://private-user-images.githubusercontent.com/30527114/237283873-24664d43-c711-4f0c-97e0-9c37958c4b86.PNG?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiJrZXkxIiwiZXhwIjoxNjgzNjk1NTgzLCJuYmYiOjE2ODM2OTUyODMsInBhdGgiOiIvMzA1MjcxMTQvMjM3MjgzODczLTI0NjY0ZDQzLWM3MTEtNGYwYy05N2UwLTljMzc5NThjNGI4Ni5QTkc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBSVdOSllBWDRDU1ZFSDUzQSUyRjIwMjMwNTEwJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDIzMDUxMFQwNTA4MDNaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT03ZDFjOGQwMDc5ODAxZWM3OWM0NjVlNTQ5MjRmNWE4NjM5ZWQzNjIzMDZiM2RiZGUwZjIzMjQ1ZDIzNDEzZWJhJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.llHHibXd_Lv6bbptg6c39qppOVYHk0Lsd8YjmtgcggY)
 
-#### Clone your repository
-
-Once you have created a repository from this template and the `Template cleanup` workflow has completed, you can click the green button to get a link for cloning your repository.
-Note that it is easiest to push to a repository if you set up SSH with Github, please see the [related documentation](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/connecting-to-github-with-ssh). SSH is required for pushing to a Github repository when using two-factor authentication.
-
-```sh
-git clone git@github.com:%REPOSITORY%.git
-cd %NAME%
-```
-(The variables wrapped in `%` will be filled in by the template cleanup) <!-- #REMOVE-ON-CLEANUP# -->
-
-#### Set project organization and name in build.sbt
-
-The cleanup workflow will have attempted to provide sensible defaults for `ThisBuild / organization` and `name` in the `build.sbt`.
-Feel free to use your text editor of choice to change them as you see fit.
-
-#### Clean up the README.md file
-
-Again, use you editor of choice to make the README specific to your project.
-
-#### Add a LICENSE file
-
-It is important to have a LICENSE for open source (or closed source) code.
-This template repository has the Unlicense in order to allow users to add any license they want to derivative code.
-The Unlicense is stripped when creating a repository from this template so that users do not accidentally unlicense their own work.
-
-For more information about a license, check out the [Github Docs](https://docs.github.com/en/free-pro-team@latest/github/building-a-strong-community/adding-a-license-to-a-repository).
-
-#### Commit your changes
-```sh
-git commit -m 'Starting %NAME%'
-git push origin main
-```
-
-### Did it work?
-
-You should now have a working Chisel3 project.
-
-You can run the included test with:
-```sh
-sbt test
-```
-
-You should see a whole bunch of output that ends with something like the following lines
-```
-[info] Tests: succeeded 1, failed 0, canceled 0, ignored 0, pending 0
-[info] All tests passed.
-[success] Total time: 5 s, completed Dec 16, 2020 12:18:44 PM
-```
-If you see the above then...
-
-### It worked!
-
-You are ready to go. We have a few recommended practices and things to do.
-
-* Use packages and following conventions for [structure](https://www.scala-sbt.org/1.x/docs/Directories.html) and [naming](http://docs.scala-lang.org/style/naming-conventions.html)
-* Package names should be clearly reflected in the testing hierarchy
-* Build tests for all your work
-* Read more about testing in SBT in the [SBT docs](https://www.scala-sbt.org/1.x/docs/Testing.html)
-* This template includes a [test dependency](https://www.scala-sbt.org/1.x/docs/Library-Dependencies.html#Per-configuration+dependencies) on [chiseltest](https://github.com/ucb-bar/chisel-testers2), this is a reasonable starting point for most tests
-  * You can remove this dependency in the build.sbt file if you want to
-* Change the name of your project in the build.sbt file
-* Change your README.md
-
-## Problems? Questions?
-
-Check out the [Chisel Users Community](https://www.chisel-lang.org/community.html) page for links to get in contact!
+### Report
+![report_1](https://github.com/js4ngu/ECE743-GEMM-Chissel/assets/30527114/638db9ec-d36e-4a0a-9e5e-73f4cd508c05)
+![report_2](https://github.com/js4ngu/ECE743-GEMM-Chissel/assets/30527114/15d9e810-c801-4842-a5c0-72be45b88413)
+![report_3](https://github.com/js4ngu/ECE743-GEMM-Chissel/assets/30527114/4cf7e3e6-c4f3-422a-bcbc-f4aabb6f2358)
+![report_4](https://github.com/js4ngu/ECE743-GEMM-Chissel/assets/30527114/e78be844-3364-4d9d-9c53-161af29ed441)
+![report_5](https://github.com/js4ngu/ECE743-GEMM-Chissel/assets/30527114/ae1cde8c-2d7d-45a8-8b36-640d73fcf5bc)
+![report_6](https://github.com/js4ngu/ECE743-GEMM-Chissel/assets/30527114/247e80c5-0f4a-4e5c-8c41-1e98de98f46c)
+![report_7](https://github.com/js4ngu/ECE743-GEMM-Chissel/assets/30527114/ff36a499-4a61-49a9-9037-081615a793f2)
+![report_8](https://github.com/js4ngu/ECE743-GEMM-Chissel/assets/30527114/d012a209-333d-4312-8617-4e5a0323d6e5)
